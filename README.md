@@ -1,6 +1,36 @@
 
 
-### 改造为 gin+gorm
+## 理念
+
+- ### 作为 [obsidian](https://obsidian.md/) `Or` [Logseq](https://logseq.com/) 的前端展示层
+  - 更多关于  或 logseq 信息 请自行搜索 如下是推荐的几个参考
+    - [Obsidian是什么以及它能用来做什么](https://sspai.com/post/67399)
+    - [Logseq小白系列教程入门篇](https://cn.logseq.com/t/topic/91)
+
+- ### 驱动 没有比较自由定义的发布逻辑 目前可以知道的几种发布流程 都有自我认知的不方便的case
+    - 基于`hugo`的 [quartz](https://quartz.jzhao.xyz/) (目前使用中)
+      - 适合纯展示用 结合`github page` 较为方便
+      - 基于静态页面 改动成本较大
+      - 无法定义相关api 
+    - 基于 `logseq` 自带发布功能
+      - 效果和本地库完全一致 可以作为展示库使用
+      - 发布为单个文件 `index.html` 完全无法扩展功能
+
+- ### 思路
+
+  - 本地启动解析脚本 监控文件变动 在文件有打上对应标签之后 开始进行发布流程
+  - 解析相关内容 推到到指定服务器
+  - 在服务器进行内容更新和发布
+
+## Next
+
+- ### 改造为 gin+gorm+sqlite
+
+## Roadmap
+- ### TODO
+- [ ] 使用sqlite可以干净运行 无需其他配置
+- [ ] 引入关系链 可以显示无限制的页面和标签层级
+- [ ] blog admin api化 可以使用在外部推送数据到显示层
 
 --- 
 
