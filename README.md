@@ -9,10 +9,13 @@
 
 - ### 驱动 没有比较自由定义的发布逻辑 目前可以知道的几种发布流程 都有自我认知的不方便的case
     - 基于`hugo`的 [quartz](https://quartz.jzhao.xyz/) (目前使用中)
+      - 一个演示站 [🌿 oldwinterの数字花园](https://garden.oldwinter.top/)
       - 适合纯展示用 结合`github page` 较为方便
       - 基于静态页面 改动成本较大
       - 无法定义相关api 
     - 基于 `logseq` 自带发布功能
+      - [logseq doc](https://docs.logseq.com/#/graph) 本身就是基于自动发布功能进行的展示
+      - [中文社区说明](https://wsin.vercel.app/#/page/readme)
       - 效果和本地库完全一致 可以作为展示库使用
       - 发布为单个文件 `index.html` 完全无法扩展功能
 
