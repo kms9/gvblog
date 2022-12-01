@@ -28,6 +28,8 @@ page_max = 30
 # 数据库
 # https://github.com/go-sql-driver/mysql
 # 数据库地址
+db_kind = "sqlite"
+db_sqlite_src = "data/goblog.db"
 db_host = "127.0.0.1"
 # 数据库端口
 db_port = 3306

@@ -25,7 +25,7 @@ func (m *User) TableName() string {
 //UserLogin 用户登录
 func UserLogin(num string) (*User, error) {
 	mod := &User{}
-	if err = db.Model(&Post{}).Where("num = ?", num).First(&mod).Error; err != nil {
+	if err = db.Model(&User{}).Where("num = ?", num).First(&mod).Error; err != nil {
 		return mod, err
 	}
 	return mod, nil

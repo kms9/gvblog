@@ -2,7 +2,10 @@ package model
 
 import (
 	"errors"
+	"fmt"
+	"github.com/glebarez/sqlite"
 	"github.com/kms9/gvblog/conf"
+	//"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 	"gorm.io/gorm/schema"
@@ -19,7 +22,53 @@ import (
 var db *gorm.DB
 var err error
 
-func Init() {
+func InitSqlite() {
+
+	fmt.Println("SqliteSrc:", conf.App.SqliteSrc())
+	db, err = gorm.Open(sqlite.Open(conf.App.SqliteSrc()), &gorm.Config{
+		// gorm日志模式：silent
+		Logger: logger.Default.LogMode(logger.Info),
+		// 外键约束
+		DisableForeignKeyConstraintWhenMigrating: true,
+		// 禁用默认事务（提高运行速度）
+		SkipDefaultTransaction: true,
+		NamingStrategy: schema.NamingStrategy{
+			// 使用单数表名，启用该选项，此时，`User` 的表名应该是 `user`
+			SingularTable: true,
+		},
+	})
+	if err != nil {
+		logs.Fatal("db sqlite 数据库 dsn:", err.Error())
+	}
+
+	sqlDB, _ := db.DB()
+	// SetMaxIdleCons 设置连接池中的最大闲置连接数。
+	sqlDB.SetMaxIdleConns(10)
+	// SetMaxOpenCons 设置数据库的最大连接数量。
+	sqlDB.SetMaxOpenConns(100)
+	// SetConnMaxLifetiment 设置连接的最大可复用时间。
+	sqlDB.SetConnMaxLifetime(10 * time.Second)
+
+	//初始化数据库
+	// 仅在备份数据之后使用
+	//err := db.AutoMigrate(
+	//	&User{},
+	//	&Cate{},
+	//	&Post{},
+	//	&PostTag{},
+	//	&Tag{},
+	//	&Global{},
+	//	&Dict{},
+	//)
+	//if err != nil {
+	//	logs.Fatal("sqlite db.AutoMigrate err:", err.Error())
+	//	return
+	//}
+
+	logs.Info("model init by sqlite success")
+}
+
+func InitMysql() {
 	// 初始化数据库操作的 gorm
 	db, err = gorm.Open(mysql.Open(conf.App.Dsn()), &gorm.Config{
 		// gorm日志模式：silent
@@ -34,10 +83,9 @@ func Init() {
 		},
 	})
 	if err != nil {
-		logs.Fatal("数据库 dsn:", err.Error())
+		logs.Fatal("mysql 数据库 dsn:", err.Error())
 	}
 
-	// 劫持xorm日志
 	sqlDB, _ := db.DB()
 	// SetMaxIdleCons 设置连接池中的最大闲置连接数。
 	sqlDB.SetMaxIdleConns(10)
@@ -46,7 +94,17 @@ func Init() {
 	// SetConnMaxLifetiment 设置连接的最大可复用时间。
 	sqlDB.SetConnMaxLifetime(10 * time.Second)
 
-	logs.Info("model init")
+	logs.Info("model init by mysql success")
+
+}
+
+func Init() {
+	switch conf.App.DbKind {
+	case "mysql":
+		InitMysql()
+	case "sqlite":
+		InitSqlite()
+	}
 }
 
 // Page 分页基本数据

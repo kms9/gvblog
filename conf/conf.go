@@ -2,9 +2,11 @@ package conf
 
 import (
 	"fmt"
-
-	"github.com/kms9/gvblog/libs/logs"
 	"github.com/BurntSushi/toml"
+	"github.com/kms9/gvblog/libs/logs"
+	"path"
+	"runtime"
+	"strings"
 )
 
 const (
@@ -40,6 +42,8 @@ type appcfg struct {
 	ImageHeight  int    `toml:"image_height"`   //图片高度
 	PageMin      int    `toml:"page_min"`       //最小分页大小
 	PageMax      int    `toml:"page_max"`       //最大分页大小
+	DbKind       string `toml:"db_kind"`        //数据库类型
+	DbSqliteSrc  string `toml:"db_sqlite_src"`  //数据库类型
 	DbHost       string `toml:"db_host"`        //数据库地址
 	DbPort       int    `toml:"db_port"`        //数据库端口
 	DbUser       string `toml:"db_user"`        //数据库账号
@@ -82,9 +86,13 @@ func (app *appcfg) IsDev() bool {
 // 用户名:密码@tcp(主机:端口)/数据库名称?charset=utf8mb4&parseTime=true&loc=Local
 const _dsn = "%s:%s@tcp(%s:%d)/%s?%s"
 
-// MySQL链接字符串
+// Dsn MySQL链接字符串
 func (app *appcfg) Dsn() string {
 	return fmt.Sprintf(_dsn, app.DbUser, app.DbPasswd, app.DbHost, app.DbPort, app.DbName, app.DbParams)
+}
+
+func (app *appcfg) SqliteSrc() string {
+	return path.Join(getCurrentAbPathByCaller(), app.DbSqliteSrc)
 }
 
 var (
@@ -108,4 +116,18 @@ func initCfg() (*appcfg, error) {
 		return nil, err
 	}
 	return app, nil
+}
+
+// 获取当前执行文件绝对路径（go run）
+func getCurrentAbPathByCaller() string {
+	var abPath string
+	_, filename, _, ok := runtime.Caller(0)
+	if ok {
+		abPath = path.Dir(filename)
+		if strings.HasSuffix(abPath, "/conf") {
+			abPath = strings.TrimSuffix(abPath, "/conf")
+		}
+		logs.Info("getCurrentAbPathByCaller:", abPath)
+	}
+	return abPath
 }
