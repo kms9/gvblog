@@ -5,7 +5,7 @@ import "fmt"
 func AllGetTest() {
 
 	fmt.Println(
-		CateAll(),
+		PostExist("test-case2"),
 	)
 
 }

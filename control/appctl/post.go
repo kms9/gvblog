@@ -85,7 +85,7 @@ func PostPage(ctx *gin.Context) {
 // @Router /adm/post/add [post]
 func PostAdd(ctx *gin.Context) {
 	ipt := &model.Post{}
-	err := ctx.ShouldBindQuery(ipt)
+	err := ctx.ShouldBind(ipt)
 	if err != nil {
 		ctx.JSON(utils.ErrIpt("输入有误", err.Error()))
 		return

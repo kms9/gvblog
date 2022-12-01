@@ -68,10 +68,8 @@ func PostGet(id int) (*Post, error) {
 
 //PostExist 判断是否存在
 func PostExist(ptah string) bool {
-	var count int64
-	if err := db.Model(&Post{}).Where(&Post{
-		Path: ptah,
-	}).Count(&count).Error; err != nil {
+	t := &Post{}
+	if err := db.Model(&Post{}).Where(&Post{Path: ptah}).First(&t).Error; err != nil {
 		logs.Error(err)
 		return false
 	}
