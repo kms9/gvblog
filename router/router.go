@@ -26,9 +26,9 @@ func RunApp() {
 	//r.HTTPErrorHandler = HTTPErrorHandler // 自定义错误处理
 	//r.Debug = conf.App.IsDev()                     // 运行模式 - echo框架好像没怎么使用这个
 	//RegDocs(r)                                     // 注册文档
-	r.Static(`/dist`, "dist")                   // 静态目录 - 后端专用
-	r.Static(`/static`, "static")               // 静态目录
-	r.StaticFile(`/favicon.ico`, "favicon.ico") // ico
+	r.Static(`/dist`, "dist")                          // 静态目录 - 后端专用
+	r.Static(`/static`, "static")                      // 静态目录
+	r.StaticFile(`/favicon.ico`, "static/favicon.ico") // ico
 	// r.Get("/dashboard", "dist/index.html")      // 前后端分离页面
 	r.GET("/login.html", func(c *gin.Context) {
 		c.Redirect(302, "/dashboard")
