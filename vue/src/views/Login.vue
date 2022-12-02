@@ -64,7 +64,7 @@
 				<a>条款</a>
 			</div>
 			<div class="copyright">
-				Copyright &copy; {{new Date().getFullYear()}}&nbsp;<a target="_blank" href="https://github.com/zxysilent">github.com/kms9</a>&nbsp;&nbsp;<a target="_blank" href="https://note.kms9.com">note.kms9.com</a>
+				Copyright &copy; {{new Date().getFullYear()}}&nbsp;<a target="_blank" href="https://github.com/kms9">github.com/kms9</a>&nbsp;&nbsp;<a target="_blank" href="https://note.kms9.com">note.kms9.com</a>
 			</div>
 		</div>
 	</div>

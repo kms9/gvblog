@@ -1,7 +1,7 @@
 {
-	"name": "zxysilent-blog",
+	"name": "kms9-blog",
 	"version": "0.2.0",
-	"description": "A template about Vue and iView By zxysilent. https://github.com/zxysilent",
+	"description": "A template about Vue and iView By kms9. https://github.com/kms9",
 	"private": true,
 	"scripts": {
 		"serve": "vue-cli-service serve",

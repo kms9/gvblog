@@ -205,7 +205,7 @@ var tmplHtml = `<!DOCTYPE html>
                             <div>
                                 <a href="/" class="btn btn-success" title="返回主页"> 返回主页 </a>
                                 <a href="javascript:history.go(-1)" class="btn btn-primary" title="返回主页"> 上一页 </a>
-                                <!-- <a href="https://github.com/zxysilent" target="_blank" title="查看作者" class="btn btn-default"> 查看作者 </a> -->
+                                <!-- <a href="https://github.com/kms9" target="_blank" title="查看作者" class="btn btn-default"> 查看作者 </a> -->
                             </div>
                         </div>
                     </div>
@@ -214,11 +214,11 @@ var tmplHtml = `<!DOCTYPE html>
         </div>
         <div class="footer">
             <div class="footer-links">
-                <a href="https://blog.zxysilent.com"  target="_blank" title="blog">blog</a>
-                <a href="https://github.com/zxysilent/blog" target="_blank" title="github">github</a>
-                <a href="https://github.com/zxysilent" target="_blank" title="查看作者">作者</a>
+                <a href="https://blog.kms9.com"  target="_blank" title="blog">blog</a>
+                <a href="https://github.com/kms9/blog" target="_blank" title="github">github</a>
+                <a href="https://github.com/kms9" target="_blank" title="查看作者">作者</a>
             </div>
-            <div class="footer-copyright">Copyright &copy; <script>document.write(newPage Date().getFullYear());</script>&nbsp;<a target="_blank" href="https://github.com/zxysilent">github.com/zxysilent</a></div>
+            <div class="footer-copyright">Copyright &copy; <script>document.write(newPage Date().getFullYear());</script>&nbsp;<a target="_blank" href="https://github.com/kms9">github.com/kms9</a></div>
         </div>
         {{if ne .ExecJs ""}}<script>{{.ExecJs}}</script>{{end}}
     </body>

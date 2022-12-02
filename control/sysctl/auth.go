@@ -28,7 +28,7 @@ const maxErrLogin = 5
 // @Tags auth-登陆认证
 // @Summary 登陆
 // @Accept mpfd
-// @Param num formData string true "账号" default(zxysilent)
+// @Param num formData string true "账号" default(kms9)
 // @Param pass formData string true "密码" default(zxyslt)
 // @Success 200 {object} model.Reply{data=string} "返回数据"
 // @Router /api/auth/login [post]
