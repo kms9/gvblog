@@ -77,7 +77,7 @@ func PagePage(ctx *gin.Context) {
 // @Router /adm/page/add [post]
 func PageAdd(ctx *gin.Context) {
 	ipt := &model.Post{}
-	err := ctx.ShouldBindQuery(ipt)
+	err := ctx.ShouldBind(ipt)
 	if err != nil {
 		ctx.JSON(utils.ErrIpt("输入有误", err.Error()))
 		return
@@ -108,7 +108,7 @@ func PageAdd(ctx *gin.Context) {
 // @Router /adm/page/edit [post]
 func PageEdit(ctx *gin.Context) {
 	ipt := &model.Post{}
-	err := ctx.ShouldBindQuery(ipt)
+	err := ctx.ShouldBind(ipt)
 	if err != nil {
 		ctx.JSON(utils.ErrIpt("输入有误", err.Error()))
 		return
@@ -134,7 +134,7 @@ func PageEdit(ctx *gin.Context) {
 // @Router /adm/page/drop [post]
 func PageDrop(ctx *gin.Context) {
 	ipt := &model.IptId{}
-	err := ctx.ShouldBindQuery(ipt)
+	err := ctx.ShouldBind(ipt)
 	if err != nil {
 		ctx.JSON(utils.ErrIpt("输入有误", err.Error()))
 		return

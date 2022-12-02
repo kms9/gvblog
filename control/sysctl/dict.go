@@ -72,7 +72,7 @@ func DictPage(ctx *gin.Context) {
 // @Router /adm/dict/add [post]
 func DictAdd(ctx *gin.Context) {
 	ipt := &model.Dict{}
-	err := ctx.ShouldBindQuery(ipt)
+	err := ctx.ShouldBind(ipt)
 	if err != nil {
 		ctx.JSON(utils.ErrIpt("输入有误", err.Error()))
 		return
@@ -95,7 +95,7 @@ func DictAdd(ctx *gin.Context) {
 // @Router /adm/dict/edit [post]
 func DictEdit(ctx *gin.Context) {
 	ipt := &model.Dict{}
-	err := ctx.ShouldBindQuery(ipt)
+	err := ctx.ShouldBind(ipt)
 	if err != nil {
 		ctx.JSON(utils.ErrIpt("输入有误", err.Error()))
 		return

@@ -105,6 +105,8 @@ func Init() {
 	case "sqlite":
 		InitSqlite()
 	}
+	//缓存
+	initGlobal()
 }
 
 // Page 分页基本数据

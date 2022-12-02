@@ -50,7 +50,7 @@ var globalCache Global
 func initGlobal() error {
 	mod := Global{}
 	//has, _ := db.ID(1).Get(&mod)
-	err := db.Model(&Global{}).Where(&Global{Id: globalId}).First(mod).Error
+	err := db.Model(&Global{}).Where(&Global{Id: globalId}).First(&mod).Error
 	if err != nil {
 		return errors.New("no")
 	}

@@ -41,11 +41,17 @@ func PostGet(id int) (*Post, error) {
 	mod := &Post{}
 	// has, _ := db.ID(id).Get(mod)
 	err := db.Model(&Post{}).Where(&Post{Id: id}).First(mod).Error
-	if err != nil && mod.Kind == PostKindPost {
+	if err != nil {
+		return nil, err
+	}
+	if err == nil && mod.Kind == PostKindPost {
 		tags := make([]Tag, 0, 4)
-		db.Raw("SELECT * FROM tag WHERE id IN (SELECT tag_id FROM post_tag WHERE post_id = ?)", mod.Id).Find(&tags)
+		if err := db.Raw("SELECT * FROM tag WHERE id IN (SELECT tag_id FROM post_tag WHERE post_id = ?)", mod.Id).Scan(&tags).Error; err != nil {
+			logs.Error("find post tag err:", err.Error())
+		}
 		mod.Tags = tags
 	}
+
 	return mod, err
 }
 

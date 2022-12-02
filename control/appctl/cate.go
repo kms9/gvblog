@@ -88,7 +88,7 @@ func CatePage(ctx *gin.Context) {
 // @Router /adm/cate/add [post]
 func CateAdd(ctx *gin.Context) {
 	ipt := &model.Cate{}
-	err := ctx.ShouldBindQuery(ipt)
+	err := ctx.ShouldBind(ipt)
 	if err != nil {
 		ctx.JSON(utils.ErrIpt("输入有误", err.Error()))
 		return
@@ -110,7 +110,7 @@ func CateAdd(ctx *gin.Context) {
 // @Router /adm/cate/edit [post]
 func CateEdit(ctx *gin.Context) {
 	ipt := &model.Cate{}
-	err := ctx.ShouldBindQuery(ipt)
+	err := ctx.ShouldBind(ipt)
 	if err != nil {
 		ctx.JSON(utils.ErrIpt("输入有误", err.Error()))
 		return
@@ -132,7 +132,7 @@ func CateEdit(ctx *gin.Context) {
 // @Router /adm/cate/drop [post]
 func CateDrop(ctx *gin.Context) {
 	ipt := &model.IptId{}
-	err := ctx.ShouldBindQuery(ipt)
+	err := ctx.ShouldBind(ipt)
 	if err != nil {
 		ctx.JSON(utils.ErrIpt("输入有误", err.Error()))
 		return

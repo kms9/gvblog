@@ -35,7 +35,7 @@ func GlobalGet(ctx *gin.Context) {
 // @Router /adm/global/edit [post]
 func GlobalEdit(ctx *gin.Context) {
 	ipt := &model.Global{}
-	err := ctx.ShouldBindQuery(ipt)
+	err := ctx.ShouldBind(ipt)
 	if err != nil {
 		ctx.JSON(utils.ErrIpt("输入有误", err.Error()))
 		return

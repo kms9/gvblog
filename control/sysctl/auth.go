@@ -159,7 +159,7 @@ func hmc(raw, key string) string {
 // @Router /adm/auth/edit [post]
 func AuthEdit(ctx *gin.Context) {
 	ipt := &model.User{}
-	err := ctx.ShouldBindQuery(&ipt)
+	err := ctx.ShouldBind(&ipt)
 	if err != nil {
 		ctx.JSON(utils.Fail("输入数据有误", err.Error()))
 		return

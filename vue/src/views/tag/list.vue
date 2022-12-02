@@ -143,7 +143,7 @@ export default {
 			});
 		},
 		emitDrop(data) {
-			admTagDrop(data.row.id).then((resp) => {
+			admTagDrop({id:data.row.id}).then((resp) => {
 				if (resp.code == 200) {
 					this.$Message.success({
 						content: "删除成功",

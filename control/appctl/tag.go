@@ -85,7 +85,7 @@ func TagPage(ctx *gin.Context) {
 // @Router /adm/tag/add [post]
 func TagAdd(ctx *gin.Context) {
 	ipt := &model.Tag{}
-	err := ctx.ShouldBindQuery(ipt)
+	err := ctx.ShouldBind(ipt)
 	if err != nil {
 		ctx.JSON(utils.ErrIpt("输入有误", err.Error()))
 		return
@@ -107,7 +107,7 @@ func TagAdd(ctx *gin.Context) {
 // @Router /adm/tag/edit [post]
 func TagEdit(ctx *gin.Context) {
 	ipt := &model.Tag{}
-	err := ctx.ShouldBindQuery(ipt)
+	err := ctx.ShouldBind(ipt)
 	if err != nil {
 		ctx.JSON(utils.ErrIpt("输入有误", err.Error()))
 		return
@@ -129,7 +129,7 @@ func TagEdit(ctx *gin.Context) {
 // @Router /adm/tag/drop [post]
 func TagDrop(ctx *gin.Context) {
 	ipt := &model.IptId{}
-	err := ctx.ShouldBindQuery(ipt)
+	err := ctx.ShouldBind(ipt)
 	if err != nil {
 		ctx.JSON(utils.ErrIpt("输入有误", err.Error()))
 		return

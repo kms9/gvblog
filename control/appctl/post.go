@@ -126,7 +126,7 @@ func PostAdd(ctx *gin.Context) {
 // @Router /adm/post/edit [post]
 func PostEdit(ctx *gin.Context) {
 	ipt := &model.Post{}
-	err := ctx.ShouldBindQuery(ipt)
+	err := ctx.ShouldBind(ipt)
 	if err != nil {
 		ctx.JSON(utils.ErrIpt("输入有误", err.Error()))
 		return
@@ -184,7 +184,7 @@ func PostEdit(ctx *gin.Context) {
 // @Router /adm/post/drop [post]
 func PostDrop(ctx *gin.Context) {
 	ipt := &model.IptId{}
-	err := ctx.ShouldBindQuery(ipt)
+	err := ctx.ShouldBind(ipt)
 	if err != nil {
 		ctx.JSON(utils.ErrIpt("输入有误", err.Error()))
 		return
